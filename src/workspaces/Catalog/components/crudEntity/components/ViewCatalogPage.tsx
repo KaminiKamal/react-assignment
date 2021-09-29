@@ -21,7 +21,7 @@ const ViewCatalogPage: React.FunctionComponent<any> = (props: any) => {
             <Container maxWidth="md">
             <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <h4>{selectedEntity?.catalogue_name}</h4>
-                <Grid item xs={12} md={8} >
+                <Grid item xs={12} md={12} >
                     <div style={{display: 'inline-flex', width: '-webkit-fill-available'}}>
 
                     
