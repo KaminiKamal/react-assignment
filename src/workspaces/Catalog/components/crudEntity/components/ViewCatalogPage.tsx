@@ -19,57 +19,52 @@ const ViewCatalogPage: React.FunctionComponent<any> = (props: any) => {
         <div>
             
             <Container maxWidth="md">
-            <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-            <h4>{selectedEntity?.catalogue_name}</h4>
-                <Grid item xs={12} md={12} >
-                    <div style={{display: 'inline-flex', width: '-webkit-fill-available'}}>
-
-                    
-                                {
-                                    selectedEntity?.videoList.map((v: {url: string, imageList: {url: string}[]}, idx: number) => (
-                                        <BoxComponent
-                                            sx={{
-                                                width: '-webkit-fill-available',
-                                                padding: '0.5em',
-                                                margin: '0.5em',
-                                                height: 300,
-                                                bgcolor: 'primary.dark',
-                                                borderRadius: '10%',
-                                                backgroundColor: 'lightgray',
-                                            }}
-                                        >
-                                            <video id="video" src={v.url} style={{width: '-webkit-fill-available', height: '-webkit-fill-available'}} height="100" controls></video>
-                                            <div style={{display: 'inline-flex', width: '-webkit-fill-available'}}>
-                                                {
-                                                    idx===0 && (<Grid item xs={12}>{selectedEntity?.catalogue_description}</Grid>)
-                                                }
-                                                {
-                                                    v?.imageList.map((_v: {url: string}) => (
-                                                        <Grid item xs={12}>
-                                                        <BoxComponent
-                                                            sx={{
-                                                                width: '-webkit-fill-available',
-                                                                padding: '0.5em',
-                                                                margin: '0.5em',
-                                                                border: '2px dashed gray',
-                                                            }}
-                                                        >
-                                                            <img src={_v.url} width="80px" height="80px"></img>
-                                                        </BoxComponent>
-                                                        
-                                                    </Grid>
-                                                    ))
-                                                }
-                                            </div> 
-                                        </BoxComponent>
-                                    ))
-                                }
-                    </div>
-                     
-                    
-
+                <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                    <h4>{selectedEntity?.catalogue_name}</h4>
+                    <Grid item xs={12} md={12} >
+                        <div style={{display: 'inline-flex', width: '-webkit-fill-available'}}>
+                            {
+                                selectedEntity?.videoList.map((v: {url: string, imageList: {url: string}[]}, idx: number) => (
+                                    <BoxComponent
+                                        sx={{
+                                            width: '-webkit-fill-available',
+                                            padding: '0.5em',
+                                            margin: '0.5em',
+                                            height: 300,
+                                            bgcolor: 'primary.dark',
+                                            borderRadius: '10%',
+                                            backgroundColor: 'lightgray',
+                                        }}
+                                    >
+                                        <video id="video" src={v.url} style={{width: '-webkit-fill-available', height: '-webkit-fill-available'}} height="100" controls></video>
+                                        <div style={{display: 'inline-flex', width: '-webkit-fill-available'}}>
+                                            {
+                                                idx===0 && (<Grid item xs={12}>{selectedEntity?.catalogue_description}</Grid>)
+                                            }
+                                            {
+                                                v?.imageList.map((_v: {url: string}) => (
+                                                    <Grid item xs={12}>
+                                                    <BoxComponent
+                                                        sx={{
+                                                            width: '-webkit-fill-available',
+                                                            padding: '0.5em',
+                                                            margin: '0.5em',
+                                                            border: '2px dashed gray',
+                                                        }}
+                                                    >
+                                                        <img src={_v.url} width="80px" height="80px"></img>
+                                                    </BoxComponent>
+                                                    
+                                                </Grid>
+                                                ))
+                                            }
+                                        </div> 
+                                    </BoxComponent>
+                                ))
+                            }
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
             </Container>
         </div>
     )
