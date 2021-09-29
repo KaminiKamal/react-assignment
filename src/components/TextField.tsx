@@ -12,6 +12,8 @@ type Props = {
     handleSave?: Function,
     styles?: any,
     helperText: string,
+    entityList: any,
+    value?: any;
     label: string,
     identifier: string,
     changeHandler: (event: Event, properties: any) => void,
@@ -36,6 +38,7 @@ const TextFieldComponent: React.FunctionComponent<any> = (props: Props) => {
                 label={props.label} 
                 variant={props.variant} 
                 helperText={props.helperText}
+                //defaultValue={props.identifier}
                 onChange={(e: any) => textChangeHandler(e)}
             />
         </TextFieldWrapper>
@@ -47,5 +50,10 @@ TextFieldComponent.defaultProps = {
     helperText: "Some important text",
     changeHandler: () => {},
 }
+const mapStateToProps = (state: any, ownProps: any) => {
+    return {
+        entityList: state.catalog.entityTypesList
+    }
+};
 
-export default TextFieldComponent;
+export default connect(mapStateToProps, null)(TextFieldComponent);

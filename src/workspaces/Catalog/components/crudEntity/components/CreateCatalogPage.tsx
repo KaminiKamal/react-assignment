@@ -34,18 +34,15 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
     const [trigger, setTrigger] = useState(true);
 
     const handlerFunction = ((action: DIALOG_STATE ) => {
-        console.log("[CATALOG]", catalogData);
-
+        
         switch(action){
             case DIALOG_STATE.CLOSE:
                 setDialogstate(false);
-                //document.querySelector(`#${e.target.id}`)?.setAttribute("value",  e.target.value);
                 break;
             case DIALOG_STATE.OPEN:
                 setDialogstate(true);
                 break;
             default:
-                //setDialogstate(false);
                 break;
         }
         
@@ -53,7 +50,6 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
 
     const addMoreVideos = useCallback(() => {
         setDialogstate(true);
-
     }, []);
 
     useEffect(() => {
@@ -105,9 +101,6 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
         if(reader){
             reader.onload = function (e: any) {
                 videoSource.setAttribute('src', e.target.result);
-                //console.log("[File url]", e.target.result);
-                // const prevData = catalogData;
-                // const urlList = catalogData.videoList;
                 const payload = {
                     video_name: '',
                     id: '',
@@ -117,19 +110,9 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
                 const videoItems = videoList || [];
                 videoItems.push(payload);
                 setVideoList(videoItems);
-                console.log("[setVideoList]", videoItems);
-                // urlList?.push(payload);
-                // Object.assign(prevData, {"videoList": urlList});
-                //setCatalogData(prevData);
                 if(video){
                     video.appendChild(videoSource);
-                    // if(typeof video.load==="function"){
-                    //     video.load();
-                    // }
-                    
                 }
-                console.log("[ALL DATA]", catalogData, props.entityList);
-                //video.play();
             };
         }
   
@@ -162,7 +145,6 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
                 const vList = videoList;
                 vList[parentVideoIdx].imageList.push({url: e.target.result});
                 setVideoList(vList);
-                console.log("[uploadThumbnail]", videoList);
                 const activeEntity = catalogData;
                 activeEntity.videoList = videoList;
                 setCatalogData(activeEntity);
@@ -176,8 +158,6 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
           reader.readAsDataURL(files[0]);
     }, [setTrigger, catalogData, trigger, videoList]);
 
-    console.log("[mountThumbnail]", videoList);
-    
     return(
         <div>
             {/* <NotificationContainer /> */}
@@ -216,6 +196,7 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
                                             label={_el.name}
                                             identifier={_el.identifier}
                                             changeHandler={textBoxChangeHandler}
+                                            value={props.entityList[0]}
                                         />
                                     </div>
                                 ))}
@@ -229,6 +210,7 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
                                             label={_el.name}
                                             identifier={_el.identifier}
                                             changeHandler={textBoxChangeHandler}
+                                            value={props.entityList[0]}
                                         />
                                     </div>
                                 ))}
@@ -295,7 +277,7 @@ const CreateCatalogPage: React.FunctionComponent<Props>  = (props) => {
                                                                 border: '2px dashed gray',
                                                             }}
                                                         >
-                                                            <img src={_v.url} width="80px" height="80px"></img>
+                                                            <img src={_v.url} style={{width: '-webkit-fill-available'}} height="80px"></img>
                                                         </BoxComponent>
                                                         
                                                     </Grid>
